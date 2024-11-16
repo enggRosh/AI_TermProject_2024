@@ -123,7 +123,6 @@ def main():
     print("path:", moves)
     print("cost:", len(moves))
     print("nodes expanded:", NodesExpanded)
-    print("search depth:", GoalNode.depth)
     print("max search depth:", MaxSearchDeep)
     print("running time:", format(stop - start, '.8f'))
 
