@@ -48,6 +48,7 @@ def astar(startState):
     global GoalNode, MaxSearchDeep
     openSet = [PuzzleState(startState, None, None, 0, 0, heuristic(startState))]
     visited = set()
+    MaxFrontier = 0  # Track the maximum frontier size
 
     while openSet:
         openSet.sort()
@@ -56,7 +57,7 @@ def astar(startState):
 
         if current.state == GoalState:
             GoalNode = current
-            return
+            return MaxFrontier
 
         for neighbor in subNodes(current):
             if neighbor.map not in visited:
@@ -64,6 +65,11 @@ def astar(startState):
                 openSet.append(neighbor)
                 visited.add(neighbor.map)
                 MaxSearchDeep = max(MaxSearchDeep, neighbor.depth)
+
+        # Update the maximum frontier size
+        MaxFrontier = max(MaxFrontier, len(openSet))
+
+    return MaxFrontier
 
 
 # Generate all possible next states from the current state
@@ -112,7 +118,7 @@ def main():
     global GoalNode
     startState = [1, 8, 2, 0, 4, 3, 7, 6, 5]
     start = timeit.default_timer()
-    astar(startState)
+    MaxFrontier = astar(startState)
     stop = timeit.default_timer()
 
     moves = []
@@ -126,6 +132,7 @@ def main():
         f"Cost: {len(moves)}\n"
         f"Nodes Expanded: {NodesExpanded}\n"
         f"Max Search Depth: {MaxSearchDeep}\n"
+        f"Max Frontier: {MaxFrontier}\n"
         f"Running Time: {format(stop - start, '.8f')} seconds\n\n\n"
     )
 
