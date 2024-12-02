@@ -120,11 +120,18 @@ def main():
         moves.insert(0, {1: "Up", 2: "Down", 3: "Left", 4: "Right"}[GoalNode.move])
         GoalNode = GoalNode.parent
 
-    print("path:", moves)
-    print("cost:", len(moves))
-    print("nodes expanded:", NodesExpanded)
-    print("max search depth:", MaxSearchDeep)
-    print("running time:", format(stop - start, '.8f'))
+    result = (
+        f"Start State: {startState}\n"
+        f"Path: {moves}\n"
+        f"Cost: {len(moves)}\n"
+        f"Nodes Expanded: {NodesExpanded}\n"
+        f"Max Search Depth: {MaxSearchDeep}\n"
+        f"Running Time: {format(stop - start, '.8f')} seconds\n\n\n"
+    )
+
+    # Append the result to a_star_output.txt
+    with open("a_star_output.txt", "a") as file:
+        file.write(result)
 
 
 if __name__ == '__main__':
