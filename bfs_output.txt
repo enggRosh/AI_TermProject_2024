@@ -1,0 +1,54 @@
+Start State: [1, 8, 2, 0, 4, 3, 7, 6, 5]
+Path: ['Right', 'Up', 'Left', 'Down', 'Down', 'Right', 'Up', 'Right', 'Up', 'Left', 'Down', 'Left', 'Up', 'Right', 'Right', 'Down', 'Down', 'Left', 'Up', 'Left', 'Up']
+Cost: 21
+Nodes Expanded: 70957
+Max Search Depth: 22
+Max Frontier: 21811
+Running Time: 0.90410140 seconds
+
+
+Start State: [0, 1, 2, 3, 4, 5, 6, 7, 8]
+Path: []
+Cost: 0
+Nodes Expanded: 0
+Max Search Depth: 0
+Max Frontier: 0
+Running Time: 0.00002620 seconds
+
+
+Start State: [1, 0, 2, 3, 4, 5, 6, 7, 8]
+Path: ['Left']
+Cost: 1
+Nodes Expanded: 2
+Max Search Depth: 2
+Max Frontier: 5
+Running Time: 0.00006400 seconds
+
+
+Start State: [1, 2, 3, 4, 0, 5, 6, 7, 8]
+Path: ['Left', 'Up', 'Right', 'Right', 'Down', 'Left', 'Up', 'Left', 'Down', 'Right', 'Right', 'Up', 'Left', 'Left']
+Cost: 14
+Nodes Expanded: 5161
+Max Search Depth: 15
+Max Frontier: 2850
+Running Time: 0.08183310 seconds
+
+
+Start State: [7, 2, 4, 5, 0, 6, 8, 3, 1]
+Path: ['Left', 'Up', 'Right', 'Down', 'Down', 'Left', 'Up', 'Right', 'Right', 'Up', 'Left', 'Left', 'Down', 'Right', 'Right', 'Down', 'Left', 'Up', 'Right', 'Up', 'Left', 'Down', 'Down', 'Left', 'Up', 'Up']
+Cost: 26
+Nodes Expanded: 171711
+Max Search Depth: 27
+Max Frontier: 24983
+Running Time: 2.61107500 seconds
+
+
+Start State: [8, 7, 6, 5, 4, 3, 2, 1, 0]
+Path: ['Up', 'Up', 'Left', 'Left', 'Down', 'Down', 'Right', 'Right', 'Up', 'Up', 'Left', 'Left', 'Down', 'Down', 'Right', 'Right', 'Up', 'Up', 'Left', 'Left', 'Down', 'Down', 'Right', 'Right', 'Up', 'Up', 'Left', 'Left']
+Cost: 28
+Nodes Expanded: 178223
+Max Search Depth: 29
+Max Frontier: 24054
+Running Time: 2.71894410 seconds
+
+
