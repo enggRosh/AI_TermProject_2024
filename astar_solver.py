@@ -17,13 +17,10 @@ class PuzzleState:
     def __lt__(self, other):
         return self.key < other.key
 
-
-
 GoalState = [0, 1, 2, 3, 4, 5, 6, 7, 8]
 GoalNode = None  
 NodesExpanded = 0  
 MaxSearchDeep = 0  
-
 
 values = [
     [0, 1, 2, 1, 2, 3, 2, 3, 4],
@@ -37,11 +34,8 @@ values = [
     [4, 3, 2, 3, 2, 1, 2, 1, 0],
 ]
 
-
 def heuristic(state):
     return sum(values[i][state.index(i)] for i in range(len(state)))
-
-
 
 def astar(startState):
     global GoalNode, MaxSearchDeep
@@ -65,12 +59,9 @@ def astar(startState):
                 visited.add(neighbor.map)
                 MaxSearchDeep = max(MaxSearchDeep, neighbor.depth)
 
-        
         MaxFrontier = max(MaxFrontier, len(openSet))
 
     return MaxFrontier
-
-
 
 def subNodes(node):
     global NodesExpanded
@@ -85,13 +76,10 @@ def subNodes(node):
             )
     return neighbors
 
-
-
 def move(state, direction):
     newState = state[:]
     index = newState.index(0)  
 
-    
     swaps = {
         0: {2: 3, 4: 1},
         1: {2: 4, 3: 0, 4: 2},
@@ -104,14 +92,11 @@ def move(state, direction):
         8: {1: 5, 3: 7},
     }
 
-    
     if direction in swaps.get(index, {}):
         swap_with = swaps[index][direction]
         newState[index], newState[swap_with] = newState[swap_with], newState[index]
         return newState
     return None
-
-
 
 def main():
     global GoalNode
