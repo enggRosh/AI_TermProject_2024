@@ -1,16 +1,15 @@
 import timeit
 
-# PuzzleState class to define the state of the puzzle
 class PuzzleState:
     def __init__(self, state, parent, move, depth, cost, key):
-        self.state = state  # Current state of the puzzle
-        self.parent = parent  # Parent node
-        self.move = move  # Move that led to this state
-        self.depth = depth  # Depth in the search tree
-        self.cost = cost  # Cost to reach this state
-        self.key = key  # Heuristic value
+        self.state = state  
+        self.parent = parent  
+        self.move = move  
+        self.depth = depth  
+        self.cost = cost 
+        self.key = key  
         if self.state:
-            self.map = ''.join(str(e) for e in self.state)  # Unique identifier for the state
+            self.map = ''.join(str(e) for e in self.state)  
 
     def __eq__(self, other):
         return self.map == other.map
@@ -19,13 +18,13 @@ class PuzzleState:
         return self.key < other.key
 
 
-# Goal state for the 8-puzzle problem
-GoalState = [0, 1, 2, 3, 4, 5, 6, 7, 8]
-GoalNode = None  # Will store the node corresponding to the solution
-NodesExpanded = 0  # Counter for expanded nodes
-MaxSearchDeep = 0  # Maximum depth reached during the search
 
-# Predefined heuristic values for the Manhattan distance calculation
+GoalState = [0, 1, 2, 3, 4, 5, 6, 7, 8]
+GoalNode = None  
+NodesExpanded = 0  
+MaxSearchDeep = 0  
+
+
 values = [
     [0, 1, 2, 1, 2, 3, 2, 3, 4],
     [1, 0, 1, 2, 1, 2, 3, 2, 3],
@@ -38,17 +37,17 @@ values = [
     [4, 3, 2, 3, 2, 1, 2, 1, 0],
 ]
 
-# Heuristic function (Manhattan distance)
+
 def heuristic(state):
     return sum(values[i][state.index(i)] for i in range(len(state)))
 
 
-# A* Search algorithm
+
 def astar(startState):
     global GoalNode, MaxSearchDeep
     openSet = [PuzzleState(startState, None, None, 0, 0, heuristic(startState))]
     visited = set()
-    MaxFrontier = 0  # Track the maximum frontier size
+    MaxFrontier = 0  
 
     while openSet:
         openSet.sort()
@@ -66,19 +65,19 @@ def astar(startState):
                 visited.add(neighbor.map)
                 MaxSearchDeep = max(MaxSearchDeep, neighbor.depth)
 
-        # Update the maximum frontier size
+        
         MaxFrontier = max(MaxFrontier, len(openSet))
 
     return MaxFrontier
 
 
-# Generate all possible next states from the current state
+
 def subNodes(node):
     global NodesExpanded
     NodesExpanded += 1
 
     neighbors = []
-    for direction in range(1, 5):  # 1: Up, 2: Down, 3: Left, 4: Right
+    for direction in range(1, 5):  
         new_state = move(node.state, direction)
         if new_state:
             neighbors.append(
@@ -87,12 +86,12 @@ def subNodes(node):
     return neighbors
 
 
-# Move the blank tile (0) in the specified direction
+
 def move(state, direction):
     newState = state[:]
-    index = newState.index(0)  # Find the position of the blank tile (0)
+    index = newState.index(0)  
 
-    # Define the valid swaps based on the current position of the blank tile
+    
     swaps = {
         0: {2: 3, 4: 1},
         1: {2: 4, 3: 0, 4: 2},
@@ -105,7 +104,7 @@ def move(state, direction):
         8: {1: 5, 3: 7},
     }
 
-    # Check if the direction is valid for the current position
+    
     if direction in swaps.get(index, {}):
         swap_with = swaps[index][direction]
         newState[index], newState[swap_with] = newState[swap_with], newState[index]
@@ -113,7 +112,7 @@ def move(state, direction):
     return None
 
 
-# Main function to run the A* algorithm
+
 def main():
     global GoalNode
     startState = [1, 8, 2, 0, 4, 3, 7, 6, 5]
@@ -136,7 +135,7 @@ def main():
         f"Running Time: {format(stop - start, '.8f')} seconds\n\n\n"
     )
 
-    # Append the result to a_star_output.txt
+    
     with open("a_star_output.txt", "a") as file:
         file.write(result)
 
